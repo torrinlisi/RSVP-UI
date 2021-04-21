@@ -11,3 +11,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navBar{
+  background-color: #203344;
+  opacity: 0.95;
+}
+
+.navbar-dark .navbar-brand {
+  color: #d98695!important;
+}
+
+.navbar-nav .nav-link {
+  color: #d98695 !important;
+}
+
+.home{
+  background-image: url("images/family.jpg");
+  height: 100vh;
+  background-position: 35%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+
+.home .textField {
+  text-align: center;
+  position: absolute;
+  top: 47vh;
+  font: 100 1.2vmin/2.5vh cookie;
+}
+
+
+.home .rsvpCodeInput {
+  text-align: center;
+  position: absolute;
+  top: 53vh;
+  font: 100 1.2vmin/2.5vh cookie;
+}
+
+.home button{
+  background-color: #d98695 !important;
+}
+
