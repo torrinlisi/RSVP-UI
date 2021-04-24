@@ -10,6 +10,7 @@ const Home = () => {
         console.log(rsvpID);
     }
     return(
+        //indentation + please make the spacing 2 instead of 4 so the indentation is cleaner
         <>
         <div className = "home">
             <Grid 
@@ -18,6 +19,7 @@ const Home = () => {
                 justify="center"
             >
                 <Grid item xs className="textField">
+                    {/* This input field is not controlled, look up the difference between uncontrolled and controlled */}
                     <TextField
                         required
                         id="filled-required"
@@ -29,7 +31,7 @@ const Home = () => {
                             borderRadius: "5px",
                         }}
                         InputLabelProps={{
-                            style: { color: "#d98695" },
+                            style: { color: "#d98695" }, //if the hex colors are used in multiple places have them in a constant file
                           }}
                         InputProps={{
                             style: { color: "#203344", height: "44px"}
@@ -42,7 +44,7 @@ const Home = () => {
                         color="secondary"
                         onClick={submitValue}
                     >
-                    RSVP
+                        RSVP
                     </Button> 
                 </Grid>
             </Grid>

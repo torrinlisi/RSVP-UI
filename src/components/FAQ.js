@@ -3,7 +3,9 @@ import { Grid, Paper, makeStyles, Accordion, AccordionSummary, Typography, Accor
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Image from '../images/ring.jpg';
 
+//theme doing nothing
 const useStyle = makeStyles((theme) => ({
+    //seperate classes in stylesheet
     root:{
         flexGrow: 1,
         height: "100%",
@@ -28,7 +30,7 @@ const useStyle = makeStyles((theme) => ({
     },
 }));
 const FAQ = () => {
-    const classes = useStyle();
+    const classes = useStyle(); //if suggested change is made not needed
     return (
         <>
             <Grid container>

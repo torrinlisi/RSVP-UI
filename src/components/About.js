@@ -5,8 +5,9 @@ import { makeStyles } from '@material-ui/core';
 import Image from '../images/bg-03.jpg';
 import Typography from "@material-ui/core/Typography";
 
-
+//the theme param is doing nothing
 const useStyle = makeStyles((theme) => ({
+    //these are probably better off in a seperate stylesheet assigned to classes
     root:{
         flexGrow: 1,
         height: "100%",
@@ -28,9 +29,11 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const About = () => {
-    const classes = useStyle();
+    const classes = useStyle(); //if suggested change is made not needed
     return (
+        // <> not necessary if there is a single child element
         <>
+            {/* div probably not necessary */}
             <div>
                 <Grid container>
                     <Grid item lg={12} className={classes.root}>
@@ -39,6 +42,7 @@ const About = () => {
                 </Grid>
                 <Grid container>
                     <Grid item lg={12} className={classes.heading} >
+                        {/* & should probably be &amp; */}
                         <Typography variant="h3">About Torrin & Yan</Typography>
                         <Typography display="block" className={classes.body}>Torrin and Yan met at the College at Brockport while working for WebTek (the college website team). At the beginning they didn't really like each other all that much, however they eventually realized they are very similar. They both can be stubborn, competitive, and reserved.</Typography>
                         <Typography display="block" className={classes.body}>Throughout the years, Torrin helped Yan fix her bad diet habits by “accidentally” breaking her giant (9.5 x 9.5 x 3.5 in) noodle bowl, helped her change her night time schedule so she could get enough sleep, and encouraged her to exercise when she was having issues sitting at her desk for work. To this day, we still don’t know how Torrin could successfully support Yan in changing her bad habits that her parents have been trying to for years and years. Maybe that is love.</Typography>
