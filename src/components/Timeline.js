@@ -16,17 +16,6 @@ import HouseIcon from '@material-ui/icons/House';
 import Image from '../images/bg-05.jpg';
 
 const useStyle = makeStyles((theme) => ({
-    root:{
-        flexGrow: 1,
-        height: "100%",
-        width: "100%"
-    },
-    banner:{
-        backgroundImage: `url(${Image})`, backgroundRepeat:'no-repeat', backgroundPosition:"center",
-        backgroundSize: "cover",
-        height: "50vh",
-        width: "100%",
-    },
     paper: {
         padding: '6px 60px',
       },
@@ -39,12 +28,12 @@ const useStyle = makeStyles((theme) => ({
     return (
         <>
             <Grid container>
-                <Grid item lg={12} className={classes.root}>
-                    <Paper className={classes.banner} />
+                <Grid item lg={12} className="root">
+                    <Paper className="banner" style={{backgroundImage:`url(${Image})`}} />
                 </Grid>
             </Grid>
             <Grid containe style={{padding:"30px"}}>
-                <Grid item lg={12} className={classes.root}>
+                <Grid item lg={12} className="root">
                     <Timeline align="alternate">
                         <TimelineItem>
                             <TimelineOppositeContent>

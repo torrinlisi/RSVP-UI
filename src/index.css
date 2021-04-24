@@ -17,12 +17,17 @@ code {
   opacity: 0.95;
 }
 
+.navBar .navIcon{
+  height: 40px;
+}
+
 .navbar-dark .navbar-brand {
   color: #d98695!important;
 }
 
 .navbar-nav .nav-link {
   color: #d98695 !important;
+  text-decoration: none;
 }
 
 .home{
@@ -52,5 +57,34 @@ code {
 
 .home button{
   background-color: #d98695 !important;
+}
+
+.root{
+  flex-grow: 1;
+  height: 100%,;
+  width: 100%;
+}
+
+.banner {
+  background-repeat: no-repeat;
+  background-position :center;
+  background-size: cover;
+  height: 50vh;
+  width: "100%";
+}
+
+.heading{
+  padding: 30px;
+}
+
+
+.faq .body{
+  position: absolute;
+  width: 100%;
+  padding: 40px;
+}
+
+acordion{
+  margin-top: 10px;
 }
 
