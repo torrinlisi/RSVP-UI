@@ -50,7 +50,7 @@ const useStyle = makeStyles((theme) => ({
                             <TimelineContent>
                                 <Paper elevation={3} className={classes.paper}>
                                     <Typography variant="h7" component="h6">
-                                        Guests Arrival
+                                        Guests Arrive
                                     </Typography>
                                     <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
@@ -71,9 +71,9 @@ const useStyle = makeStyles((theme) => ({
                             <TimelineContent>
                                 <Paper elevation={3} className={classes.paper}>
                                     <Typography variant="h7" component="h6">
-                                        Door Close
+                                        Doors Close
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
+                                    <Typography>The doors will close for the ceremony</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -94,7 +94,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Ceremony Begins
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -115,7 +114,7 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Cocktail Hour
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
+                                    <Typography>Cocktails will be provided in the waiting area while reception is setup</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -136,7 +135,7 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Ballroom Doors Open
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
+                                    <Typography>The reception will begin</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -157,7 +156,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         First Dance
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -178,7 +176,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Speech Time
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -199,7 +196,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Father-Daughter Dance
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -220,7 +216,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Mother-Son Dance
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -241,7 +236,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Cake Time
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -262,7 +256,7 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Party Time
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
+                                    <Typography>Open bar at this time</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -283,7 +277,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Farewell
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
