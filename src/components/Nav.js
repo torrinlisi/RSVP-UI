@@ -1,13 +1,9 @@
 import React from 'react';
-//import { Link } from 'react-router-dom'; // use this instead of an href
+import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap'; //change to react material ui
-
-//tells webpack to use this file, I guess jpg is default accepted
 import logo from '../images/logo.png';
-
 const NavTop = () => {
     return(
-        //change to react material ui
         <Navbar className="navBar" collapseOnSelect expand="xl" variant="dark" fixed="top" >
             <Navbar.Brand href="/">
                 <img
@@ -20,17 +16,14 @@ const NavTop = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/about">About</Nav.Link>
-                    <Nav.Link href="/timeline">Timeline</Nav.Link>
-                    <Nav.Link href="/covid19">Covid-19</Nav.Link>
-                    <Nav.Link href="/faq">FAQ</Nav.Link>
+                    <Link className="nav-link" to="/about">About</Link>
+                    <Link className="nav-link" to="/timeline">Timeline</Link>
+                    <Link className="nav-link" to="/covid19">Covid-19</Link>
+                    <Link className="nav-link" to="/faq">FAQ</Link>
                 </Nav>
             </Navbar.Collapse>
-                
-            
         </Navbar>
-
-    );
+    );  
   };
 
   export default NavTop;

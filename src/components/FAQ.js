@@ -1,48 +1,21 @@
 import React from 'react';
-import { Grid, Paper, makeStyles, Accordion, AccordionSummary, Typography, AccordionDetails } from '@material-ui/core';
+import { Grid, Paper, Accordion, AccordionSummary, Typography, AccordionDetails } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Image from '../images/ring.jpg';
 
-//theme doing nothing
-const useStyle = makeStyles((theme) => ({
-    //seperate classes in stylesheet
-    root:{
-        flexGrow: 1,
-        height: "100%",
-        width: "100%"
-    },
-    banner: {
-        backgroundImage: `url(${Image})`,backgroundRepeat: 'no-repeat', backgroundPosition:"center",
-        backgroundSize: "cover",
-        height: "50vh",
-        width: "100%",
-    },
-    heading:{
-        padding:"30px",
-    },
-    body:{
-        position:"absolute",
-        width: "100%",
-        padding:"20px",
-    },
-    acordion:{
-        marginTop:"10px",
-    },
-}));
 const FAQ = () => {
-    const classes = useStyle(); //if suggested change is made not needed
     return (
         <>
             <Grid container>
-                <Grid item lg={12} className={classes.root}>
-                    <Paper className={classes.banner} />
+                <Grid item lg={12} className="root">
+                    <Paper className="banner" style={{backgroundImage:`url(${Image})`}} />
                 </Grid>
             </Grid>
             <Grid container>
                 <Grid item lg={12}>
-                    <Typography variant="h3" className={classes.heading}>General Questions</Typography>
-                    <Grid container className={classes.faq}>
-                        <Grid item lg={12} className={classes.body}>
+                    <Typography variant="h3" className="heading">General Questions</Typography>
+                    <Grid container className="faq">
+                        <Grid item lg={12} className="body">
                             <Accordion>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
@@ -57,7 +30,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -71,7 +44,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -85,7 +58,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -99,7 +72,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -113,7 +86,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -127,7 +100,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -141,7 +114,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
@@ -155,7 +128,7 @@ const FAQ = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                            <Accordion className={classes.acordion}>
+                            <Accordion className= "acordion">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"

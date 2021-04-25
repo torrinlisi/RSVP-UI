@@ -4,11 +4,11 @@ import About from './components/About';
 import Timeline from './components/Timeline';
 import FAQ from './components/FAQ';
 import COVID from './components/Covid19';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 export const Routes = () => {
     return (
-        <BrowserRouter>
+        <>
             <Switch>
                 <Route path="/" exact>
                     <Home />
@@ -34,7 +34,7 @@ export const Routes = () => {
                     <COVID />
                 </Route>
             </Switch>
-        </BrowserRouter>
+        </>
     );
 };
 
