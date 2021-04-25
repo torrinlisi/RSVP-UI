@@ -32,11 +32,12 @@ code {
 
 .home{
   background-image: url("images/family.jpg");
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   background-position: 35%;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  position: absolute;
 }
 
 
