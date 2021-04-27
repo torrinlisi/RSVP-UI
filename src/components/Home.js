@@ -121,68 +121,69 @@ const Home = () => {
     return (
       <>
         <Grid className="rsvpForm">
-          <Grid container spacing={3}>
-            <Grid item xs={12} className="textField">
-              <Typography variant="h5">RSVP</Typography>
-            </Grid>
-            {rsvpData.map((element, index) => (
-              <>
-                <Grid item xs={12} className="textField">
-                  <TextField className="fullSizedField" label="Name" value={element.name} disabled/>
-                </Grid>
-                <Grid item xs={6} className="textField">
-                  <Select 
-                    required 
-                    className="fullSizedField"
-                    value={rsvpData[index].is_attending === "" ? '-1': rsvpData[index].is_attending} 
-                    onChange={(value) => {
-                      handleChange(index, 'is_attending', value.target.value)
-                    }}>
-                    <MenuItem value="-1" disabled>Select a Response</MenuItem>
-                    <MenuItem value={true}>Accept With Pleasure</MenuItem>
-                    <MenuItem value={false}>Regretfully Decline</MenuItem>
-                  </Select>
-                </Grid>
-                <Grid item xs={6} className="textField">
-                  <Select 
-                    required 
-                    className="fullSizedField"
-                    disabled={rsvpData[index].is_attending !== true}
-                    value={rsvpData[index].meal_id || '-1'} 
-                    onChange={(value) => handleChange(index, 'meal_id', value.target.value)}>
-                    <MenuItem value='-1' disabled>Select a Meal</MenuItem>
-                    {meals.map((meal) => (
-                      <MenuItem value={meal.id}>{meal.name}</MenuItem>
-                    ))}
-                  </Select>
-                </Grid>
-                <Grid item xs={12} className="textField">
-                  <TextField
-                    label="Allergies"
-                    className="fullSizedField"
-                    disabled={rsvpData[index].is_attending !== true}
-                    value={rsvpData[index].allergy || ''}
-                    onChange={(value) => handleChange(index, 'allergy', value.target.value)}
-                  />
-                </Grid>
-                {rsvpData.length > 1 && rsvpData.length !== index+1 && (
+            <Grid container spacing={3}>
+              <Grid item xs={12} className="textField">
+                <Typography variant="h5">RSVP</Typography>
+              </Grid>
+              {rsvpData.map((element, index) => (
+                <>
                   <Grid item xs={12} className="textField">
-                    <Divider className="rsvpDivider"/>
+                    <TextField className="fullSizedField" label="Name" value={element.name} disabled/>
                   </Grid>
-                )}
-              </>
-            ))}
-            <Grid item xs={12} className="textField submitButton">
-              <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => submitRSVP()}
-                >
-                  RSVP
-              </Button>
+                  <Grid item xs={6} className="textField">
+                    <Select 
+                      required 
+                      className="fullSizedField"
+                      value={rsvpData[index].is_attending === "" ? '-1': rsvpData[index].is_attending} 
+                      onChange={(value) => {
+                        handleChange(index, 'is_attending', value.target.value)
+                      }}>
+                      <MenuItem value="-1" disabled>Select a Response</MenuItem>
+                      <MenuItem value={true}>Accept With Pleasure</MenuItem>
+                      <MenuItem value={false}>Regretfully Decline</MenuItem>
+                    </Select>
+                  </Grid>
+                  <Grid item xs={6} className="textField">
+                    <Select 
+                      required 
+                      className="fullSizedField"
+                      disabled={rsvpData[index].is_attending !== true}
+                      value={rsvpData[index].meal_id || '-1'} 
+                      onChange={(value) => handleChange(index, 'meal_id', value.target.value)}>
+                      <MenuItem value='-1' disabled>Select a Meal</MenuItem>
+                      {meals.map((meal) => (
+                        <MenuItem value={meal.id}>{meal.name}</MenuItem>
+                      ))}
+                    </Select>
+                  </Grid>
+                  <Grid item xs={12} className="textField">
+                    <TextField
+                      label="Allergies"
+                      className="fullSizedField"
+                      disabled={rsvpData[index].is_attending !== true}
+                      value={rsvpData[index].allergy || ''}
+                      onChange={(value) => handleChange(index, 'allergy', value.target.value)}
+                    />
+                  </Grid>
+                  {rsvpData.length > 1 && rsvpData.length !== index+1 && (
+                    <Grid item xs={12} className="textField">
+                      <Divider className="rsvpDivider"/>
+                    </Grid>
+                  )}
+                </>
+              ))}
             </Grid>
+            <Grid item xs={12} className="textField submitButton">
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => submitRSVP()}
+              >
+                RSVP
+            </Button>
           </Grid>
-        </Grid>
+          </Grid>
+          
       </>
     )
   }
