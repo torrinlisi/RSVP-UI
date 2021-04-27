@@ -12,11 +12,12 @@ import axios from 'axios';
 const Home = () => {
   const [rsvpCode, setRSVPCode] = useState("");
   const [isValidCode, setIsValidCode] = useState(false);
+  const [isNoRSVPFound, setIsNoRSVPFound] = useState(false);
 
   const [rsvpData, setRSVPData] = useState([]);
   const [meals, setMeals] = useState([]);
 
-  const submitValue = () => {
+  const getRSVPInfo = () => {
     let config = {
       headers: {
         'x-api-key': '1HBb6jeAJX7n8X5bVsAjGaHwbSG8r4Jg3Afz8WVG'
@@ -25,14 +26,63 @@ const Home = () => {
 
     axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/rsvp?rsvpCode=${rsvpCode}`, config)
       .then(async (res) => {
-        await setMeals(res.data.meals);
-        await setRSVPData(res.data.rsvpData);
-        setIsValidCode(true);
+        if(res.data.rsvpData.length > 0) {
+          setIsNoRSVPFound(false);
+          await setMeals(res.data.meals);
+          await setRSVPData(res.data.rsvpData);
+          setIsValidCode(true);
+        } else {
+          setIsNoRSVPFound(true);
+        }
       })
   }
 
   const submitRSVP = () => {
-    console.log('submitted')
+    //check errors
+    let isError = false;
+    rsvpData.forEach((element) => {
+      if(element.is_attending === null)
+        isError = true;
+      else if(element.is_attending === true && element.meal_id === null)
+        isError = true;
+    })
+
+    if(isError) {
+      alert("Please complete required fields");
+      return;
+    }
+
+    let config = {
+      headers: {
+        'x-api-key': '1HBb6jeAJX7n8X5bVsAjGaHwbSG8r4Jg3Afz8WVG'
+      }
+    }
+
+    axios.post(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/rsvp`,
+      {
+        "people": rsvpData.map(person => ({
+          allergies: person.allergy,
+          mealID: person.meal_id,
+          isAttending: person.is_attending,
+          rsvpPersonID: person.id
+        })),
+        "rsvpID": rsvpData[0].rsvp_id
+      },config)
+      .then(async (res) => {
+        console.log(res)
+        setIsValidCode(false);
+        setRSVPData([]);
+        setRSVPCode("");
+      })
+  }
+
+  const handleChange = async (i, key, event) => {
+    let data = [...rsvpData];
+    data[i][key] = event;
+
+    console.log(data)
+
+    await setRSVPData(data);
   }
 
   const defaultView = () => {
@@ -46,6 +96,7 @@ const Home = () => {
               label="RSVP Code"
               variant="filled"
               className="fullSizedField"
+              error={isNoRSVPFound}
               value={rsvpCode}
               onChange={e => setRSVPCode(e.target.value)}
               InputLabelProps={{className:"rsvpInputText"}}
@@ -56,7 +107,7 @@ const Home = () => {
             <Button
               variant="contained"
               color="secondary"
-              onClick={submitValue}
+              onClick={() => getRSVPInfo()}
             >
               RSVP
             </Button> 
@@ -80,15 +131,26 @@ const Home = () => {
                   <TextField className="fullSizedField" label="Name" value={element.name} disabled/>
                 </Grid>
                 <Grid item xs={6} className="textField">
-                  <Select required className="fullSizedField" defaultValue="-1">
+                  <Select 
+                    required 
+                    className="fullSizedField"
+                    value={rsvpData[index].is_attending === "" ? '-1': rsvpData[index].is_attending} 
+                    onChange={(value) => {
+                      handleChange(index, 'is_attending', value.target.value)
+                    }}>
                     <MenuItem value="-1" disabled>Select a Response</MenuItem>
                     <MenuItem value={true}>Accept With Pleasure</MenuItem>
                     <MenuItem value={false}>Regretfully Decline</MenuItem>
                   </Select>
                 </Grid>
                 <Grid item xs={6} className="textField">
-                  <Select required className="fullSizedField" defaultValue="-1">
-                    <MenuItem value="-1" disabled>Select a Meal</MenuItem>
+                  <Select 
+                    required 
+                    className="fullSizedField"
+                    disabled={rsvpData[index].is_attending !== true}
+                    value={rsvpData[index].meal_id || '-1'} 
+                    onChange={(value) => handleChange(index, 'meal_id', value.target.value)}>
+                    <MenuItem value='-1' disabled>Select a Meal</MenuItem>
                     {meals.map((meal) => (
                       <MenuItem value={meal.id}>{meal.name}</MenuItem>
                     ))}
@@ -98,6 +160,9 @@ const Home = () => {
                   <TextField
                     label="Allergies"
                     className="fullSizedField"
+                    disabled={rsvpData[index].is_attending !== true}
+                    value={rsvpData[index].allergy || ''}
+                    onChange={(value) => handleChange(index, 'allergy', value.target.value)}
                   />
                 </Grid>
                 {rsvpData.length > 1 && rsvpData.length !== index+1 && (
@@ -111,7 +176,7 @@ const Home = () => {
               <Button
                   variant="contained"
                   color="secondary"
-                  onClick={submitRSVP()}
+                  onClick={() => submitRSVP()}
                 >
                   RSVP
               </Button>
