@@ -17,6 +17,12 @@ const Home = () => {
   const [rsvpData, setRSVPData] = useState([]);
   const [meals, setMeals] = useState([]);
 
+  const resetPage = () => {
+    setRSVPCode("");
+    setIsValidCode(false);
+    setRSVPData([])
+  }
+
   const getRSVPInfo = () => {
     let config = {
       headers: {
@@ -80,7 +86,7 @@ const Home = () => {
     let data = [...rsvpData];
     data[i][key] = event;
 
-    console.log(data)
+    // console.log(data)
 
     await setRSVPData(data);
   }
@@ -103,7 +109,7 @@ const Home = () => {
               InputProps={{className:"rsvpInputText"}}
             />
           </Grid>
-          <Grid item xs={12} className="rsvpCodeInput submitButton" >
+          <Grid item xs={12} className="rsvpCodeInput actionButton" >
             <Button
               variant="contained"
               color="secondary"
@@ -133,12 +139,13 @@ const Home = () => {
                   <Grid item xs={6} className="textField">
                     <Select 
                       required 
+                      disabled ={rsvpData[0].responded}
                       className="fullSizedField"
-                      value={rsvpData[index].is_attending === "" ? '-1': rsvpData[index].is_attending} 
+                      value={rsvpData[index].is_attending === null ? "-1" :rsvpData[index].is_attending } 
                       onChange={(value) => {
                         handleChange(index, 'is_attending', value.target.value)
                       }}>
-                      <MenuItem value="-1" disabled>Select a Response</MenuItem>
+                      <MenuItem value='-1' disabled>Select a Response</MenuItem>
                       <MenuItem value={true}>Accept With Pleasure</MenuItem>
                       <MenuItem value={false}>Regretfully Decline</MenuItem>
                     </Select>
@@ -147,20 +154,26 @@ const Home = () => {
                     <Select 
                       required 
                       className="fullSizedField"
-                      disabled={rsvpData[index].is_attending !== true}
+                      disabled={
+                        rsvpData[0].responded || 
+                        !rsvpData[index].is_attending
+                      }
                       value={rsvpData[index].meal_id || '-1'} 
                       onChange={(value) => handleChange(index, 'meal_id', value.target.value)}>
                       <MenuItem value='-1' disabled>Select a Meal</MenuItem>
-                      {meals.map((meal) => (
+                      {rsvpData[index].age > '12' && meals.map((meal) => (
                         <MenuItem value={meal.id}>{meal.name}</MenuItem>
                       ))}
+                      {rsvpData[index].age <= '12' && (
+                        <MenuItem value={meals[3].id}>{meals[3].name}</MenuItem>
+                      )}
                     </Select>
                   </Grid>
                   <Grid item xs={12} className="textField">
                     <TextField
                       label="Allergies"
                       className="fullSizedField"
-                      disabled={rsvpData[index].is_attending !== true}
+                      disabled={rsvpData[0].responded || rsvpData[index].is_attending !== true}
                       value={rsvpData[index].allergy || ''}
                       onChange={(value) => handleChange(index, 'allergy', value.target.value)}
                     />
@@ -172,18 +185,28 @@ const Home = () => {
                   )}
                 </>
               ))}
+              <Grid item xs={12} className="textField">
+                <Button
+                  variant="contained"
+
+                  onClick={resetPage}
+                  className="actionReturnButton"
+                >
+                  Return
+                </Button>      
+                  {!rsvpData[0].responded && (       
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => submitRSVP()}
+                        className="actionButton"
+                      >
+                        RSVP
+                    </Button>
+                  )} 
+                  </Grid>
             </Grid>
-            <Grid item xs={12} className="textField submitButton">
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => submitRSVP()}
-              >
-                RSVP
-            </Button>
-          </Grid>
-          </Grid>
-          
+          </Grid>       
       </>
     )
   }

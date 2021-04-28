@@ -93,7 +93,7 @@ acordion{
 .rsvp{
   position: absolute;
   top: 50%;
-  width: 20%;
+  width: 30%;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -130,6 +130,7 @@ acordion{
 
 .rsvpForm > div {
   padding: 20px;
+  height: 100%;
 }
 
 .rsvpForm  .rsvpInputText{
@@ -139,12 +140,21 @@ acordion{
   padding: 20px;
 }
 
-.rsvpForm .submitButton {
+.rsvpForm .actionButton {
+  background-color: #203344;
+  opacity: 0.88;
+  color: #d98695;
   text-align: right;
+  margin: 5px;
+}
+.rsvpForm .actionReturnButton {
+  text-align: right;
+  margin: 5px;
 }
 
-.rsvp .submitButton {
-  text-align: right;
+.rsvp .actionButton {
+  text-align: center;
+  margin: 5px;
 }
 
 .fullSizedField {
