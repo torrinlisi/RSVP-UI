@@ -13,7 +13,7 @@ const FAQ = () => {
             </Grid>
             <Grid container>
                 <Grid item lg={12}>
-                    <Typography variant="h3" className="heading">General Questions</Typography>
+                    <Typography variant="h4" className="heading">General Questions</Typography>
                     <Grid container className="faq">
                         <Grid item lg={12} className="body">
                             <Accordion>

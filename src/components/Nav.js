@@ -5,14 +5,16 @@ import logo from '../images/logo.png';
 const NavTop = () => {
     return(
         <Navbar className="navBar" collapseOnSelect expand="xl" variant="dark" fixed="top" >
-            <Navbar.Brand href="/">
-                <img
-                    alt="logo"
-                    src={logo}
-                    height="40px"
-                />
-                Torrin &amp; Yan
-            </Navbar.Brand>
+            <Link to="/">
+                <Navbar.Brand>
+                    <img
+                        alt="logo"
+                        src={logo}
+                        height="40px"
+                    />
+                    Torrin &amp; Yan
+                </Navbar.Brand>
+            </Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">

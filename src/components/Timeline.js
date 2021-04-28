@@ -17,7 +17,7 @@ import Image from '../images/bg-05.jpg';
 
 const useStyle = makeStyles((theme) => ({
     paper: {
-        padding: '6px 60px',
+         padding: '6px',
       },
       secondaryTail: {
         backgroundColor: theme.palette.secondary.main,
@@ -32,7 +32,8 @@ const useStyle = makeStyles((theme) => ({
                     <Paper className="banner" style={{backgroundImage:`url(${Image})`}} />
                 </Grid>
             </Grid>
-            <Grid containe style={{padding:"30px"}}>
+            
+            <Grid containe className="timeline">
                 <Grid item lg={12} className="root">
                     <Timeline align="alternate">
                         <TimelineItem>
@@ -52,7 +53,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Guests Arrive
                                     </Typography>
-                                    <Typography>The hotel staff will check you in and guide you to your seat</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -73,7 +73,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Doors Close
                                     </Typography>
-                                    <Typography>The doors will close for the ceremony</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -114,7 +113,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Cocktail Hour
                                     </Typography>
-                                    <Typography>Cocktails will be provided in the waiting area while reception is setup</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -135,7 +133,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Ballroom Doors Open
                                     </Typography>
-                                    <Typography>The reception will begin</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -256,7 +253,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Party Time
                                     </Typography>
-                                    <Typography>Open bar at this time</Typography>
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>

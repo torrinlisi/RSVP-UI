@@ -13,7 +13,7 @@ const COVID = () => {
         </Grid>
         <Grid container>
             <Grid item lg={12} className="heading">
-                <Typography variant="h3" style={{paddingBottom:"20px"}}>COVID-19 Wedding</Typography>
+                <Typography variant="h4" style={{paddingBottom:"20px"}}>COVID-19 Wedding</Typography>
                 <Typography display="block" className="body">We believe the safty of our guests are the most important thing at the wedding. 
                 We want our guests to have a great time at the wedding and also follow the Health and Safety
                 Protocol NYS announces. Please review the rules below and <a href="mailto:torrinlisi@gmail.com" target="_top">contact us</a> if you have any questions.
