@@ -53,7 +53,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Guests Arrive
                                     </Typography>
-                                    {/* <Typography style={{fontSize:"small"}}>The hotel staff will check you in and guide you to your seat</Typography> */}
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -74,7 +73,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Doors Close
                                     </Typography>
-                                    {/* <Typography style={{fontSize:"small"}}>The doors will close for the ceremony</Typography> */}
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -115,7 +113,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Cocktail Hour
                                     </Typography>
-                                    {/* <Typography style={{fontSize:"small"}}>Cocktails will be provided in the waiting area while reception is setup</Typography> */}
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -136,7 +133,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Ballroom Doors Open
                                     </Typography>
-                                    {/* <Typography style={{fontSize:"small"}}>The reception will begin</Typography> */}
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>
@@ -257,7 +253,6 @@ const useStyle = makeStyles((theme) => ({
                                     <Typography variant="h7" component="h6">
                                         Party Time
                                     </Typography>
-                                    {/* <Typography style={{fontSize:"small"}}>Open bar at this time</Typography> */}
                                 </Paper>
                             </TimelineContent>
                         </TimelineItem>

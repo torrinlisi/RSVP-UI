@@ -75,7 +75,6 @@ const Home = () => {
         "rsvpID": rsvpData[0].rsvp_id
       },config)
       .then(async (res) => {
-        console.log(res)
         setIsValidCode(false);
         setRSVPData([]);
         setRSVPCode("");
@@ -85,8 +84,6 @@ const Home = () => {
   const handleChange = async (i, key, event) => {
     let data = [...rsvpData];
     data[i][key] = event;
-
-    // console.log(data)
 
     await setRSVPData(data);
   }
