@@ -13,6 +13,8 @@ const Home = () => {
   const [rsvpCode, setRSVPCode] = useState("");
   const [isValidCode, setIsValidCode] = useState(false);
   const [isNoRSVPFound, setIsNoRSVPFound] = useState(false);
+  const [clickRSVP, setClickRSVP] = useState(false)
+  const [clickRSVPForm, setClickRSVPForm] = useState(false)
 
   const [rsvpData, setRSVPData] = useState([]);
   const [meals, setMeals] = useState([]);
@@ -37,6 +39,7 @@ const Home = () => {
           await setMeals(res.data.meals);
           await setRSVPData(res.data.rsvpData);
           setIsValidCode(true);
+          console.log(res.data.meals)
         } else {
           setIsNoRSVPFound(true);
         }
@@ -87,7 +90,7 @@ const Home = () => {
 
     await setRSVPData(data);
   }
-
+  
   const defaultView = () => {
     return (
       <Grid className="rsvp">
@@ -110,6 +113,7 @@ const Home = () => {
             <Button
               variant="contained"
               color="secondary"
+              disabled={clickRSVP}
               onClick={() => getRSVPInfo()}
             >
               RSVP
@@ -142,9 +146,9 @@ const Home = () => {
                       onChange={(value) => {
                         handleChange(index, 'is_attending', value.target.value)
                       }}>
-                      <MenuItem value='-1' disabled>Select a Response</MenuItem>
-                      <MenuItem value={true}>Accept With Pleasure</MenuItem>
-                      <MenuItem value={false}>Regretfully Decline</MenuItem>
+                      <MenuItem key="select" value='-1' disabled>Select a Response</MenuItem>
+                      <MenuItem key="accept" value={true}>Accept With Pleasure</MenuItem>
+                      <MenuItem key="decline" value={false}>Regretfully Decline</MenuItem>
                     </Select>
                   </Grid>
                   <Grid item xs={6} className="textField">
@@ -158,11 +162,12 @@ const Home = () => {
                       value={rsvpData[index].meal_id || '-1'} 
                       onChange={(value) => handleChange(index, 'meal_id', value.target.value)}>
                       <MenuItem value='-1' disabled>Select a Meal</MenuItem>
-                      {rsvpData[index].age > '12' && meals.map((meal) => (
-                        <MenuItem value={meal.id}>{meal.name}</MenuItem>
-                      ))}
+                      {rsvpData[index].age > '12' && meals.map((meal) => {
+                          if(meal.id !== 4) 
+                            return <MenuItem key={index + "-" + meal.id} value={meal.id}>{meal.name}</MenuItem>
+                      })}
                       {rsvpData[index].age <= '12' && (
-                        <MenuItem value={meals[3].id}>{meals[3].name}</MenuItem>
+                        <MenuItem key={index + "-" + meals[3].id} value={meals[3].id}>{meals[3].name}</MenuItem>
                       )}
                     </Select>
                   </Grid>
@@ -195,6 +200,7 @@ const Home = () => {
                     <Button
                         variant="contained"
                         color="secondary"
+                        disabled={clickRSVPForm}
                         onClick={() => submitRSVP()}
                         className="actionButton"
                       >
