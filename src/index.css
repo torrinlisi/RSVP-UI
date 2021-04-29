@@ -112,7 +112,8 @@ acordion{
   right: 0;
   margin: auto;
   max-height: 60%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .rsvp .textField{
