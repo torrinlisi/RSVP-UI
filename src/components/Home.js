@@ -44,6 +44,7 @@ const Home = () => {
           setIsValidCode(true);
         } else {
           setIsNoRSVPFound(true);
+          setClickRSVP(false);
         }
       })
   }
