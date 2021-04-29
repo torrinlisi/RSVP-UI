@@ -20,12 +20,15 @@ const Home = () => {
   const [meals, setMeals] = useState([]);
 
   const resetPage = () => {
+    setClickRSVP(false);
+    setClickRSVPForm(false);
     setRSVPCode("");
     setIsValidCode(false);
     setRSVPData([])
   }
 
   const getRSVPInfo = () => {
+    setClickRSVP(true);
     let config = {
       headers: {
         'x-api-key': '1HBb6jeAJX7n8X5bVsAjGaHwbSG8r4Jg3Afz8WVG'
@@ -39,7 +42,6 @@ const Home = () => {
           await setMeals(res.data.meals);
           await setRSVPData(res.data.rsvpData);
           setIsValidCode(true);
-          console.log(res.data.meals)
         } else {
           setIsNoRSVPFound(true);
         }
@@ -60,6 +62,9 @@ const Home = () => {
       alert("Please complete required fields");
       return;
     }
+
+    setClickRSVPForm(true);
+    setClickRSVP(false);
 
     let config = {
       headers: {
@@ -177,7 +182,7 @@ const Home = () => {
                       className="fullSizedField"
                       disabled={rsvpData[0].responded || rsvpData[index].is_attending !== true}
                       value={rsvpData[index].allergy || ''}
-                      onChange={(value) => handleChange(index, 'allergy', value.target.value)}
+                      onChange={(value) => handleChange(index, 'allergy', value.target.value || '')}
                     />
                   </Grid>
                   {rsvpData.length > 1 && rsvpData.length !== index+1 && (
@@ -190,7 +195,6 @@ const Home = () => {
               <Grid item xs={12} className="textField">
                 <Button
                   variant="contained"
-
                   onClick={resetPage}
                   className="actionReturnButton"
                 >
