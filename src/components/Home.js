@@ -13,17 +13,22 @@ const Home = () => {
   const [rsvpCode, setRSVPCode] = useState("");
   const [isValidCode, setIsValidCode] = useState(false);
   const [isNoRSVPFound, setIsNoRSVPFound] = useState(false);
+  const [clickRSVP, setClickRSVP] = useState(false)
+  const [clickRSVPForm, setClickRSVPForm] = useState(false)
 
   const [rsvpData, setRSVPData] = useState([]);
   const [meals, setMeals] = useState([]);
 
   const resetPage = () => {
+    setClickRSVP(false);
+    setClickRSVPForm(false);
     setRSVPCode("");
     setIsValidCode(false);
     setRSVPData([])
   }
 
   const getRSVPInfo = () => {
+    setClickRSVP(true);
     let config = {
       headers: {
         'x-api-key': '1HBb6jeAJX7n8X5bVsAjGaHwbSG8r4Jg3Afz8WVG'
@@ -58,6 +63,9 @@ const Home = () => {
       return;
     }
 
+    setClickRSVPForm(true);
+    setClickRSVP(false);
+
     let config = {
       headers: {
         'x-api-key': '1HBb6jeAJX7n8X5bVsAjGaHwbSG8r4Jg3Afz8WVG'
@@ -87,7 +95,7 @@ const Home = () => {
 
     await setRSVPData(data);
   }
-
+  
   const defaultView = () => {
     return (
       <Grid className="rsvp">
@@ -110,6 +118,7 @@ const Home = () => {
             <Button
               variant="contained"
               color="secondary"
+              disabled={clickRSVP}
               onClick={() => getRSVPInfo()}
             >
               RSVP
@@ -142,9 +151,9 @@ const Home = () => {
                       onChange={(value) => {
                         handleChange(index, 'is_attending', value.target.value)
                       }}>
-                      <MenuItem value='-1' disabled>Select a Response</MenuItem>
-                      <MenuItem value={true}>Accept With Pleasure</MenuItem>
-                      <MenuItem value={false}>Regretfully Decline</MenuItem>
+                      <MenuItem key="select" value='-1' disabled>Select a Response</MenuItem>
+                      <MenuItem key="accept" value={true}>Accept With Pleasure</MenuItem>
+                      <MenuItem key="decline" value={false}>Regretfully Decline</MenuItem>
                     </Select>
                   </Grid>
                   <Grid item xs={6} className="textField">
@@ -158,11 +167,12 @@ const Home = () => {
                       value={rsvpData[index].meal_id || '-1'} 
                       onChange={(value) => handleChange(index, 'meal_id', value.target.value)}>
                       <MenuItem value='-1' disabled>Select a Meal</MenuItem>
-                      {rsvpData[index].age > '12' && meals.map((meal) => (
-                        <MenuItem value={meal.id}>{meal.name}</MenuItem>
-                      ))}
+                      {rsvpData[index].age > '12' && meals.map((meal) => {
+                          if(meal.id !== 4) 
+                            return <MenuItem key={index + "-" + meal.id} value={meal.id}>{meal.name}</MenuItem>
+                      })}
                       {rsvpData[index].age <= '12' && (
-                        <MenuItem value={meals[3].id}>{meals[3].name}</MenuItem>
+                        <MenuItem key={index + "-" + meals[3].id} value={meals[3].id}>{meals[3].name}</MenuItem>
                       )}
                     </Select>
                   </Grid>
@@ -172,7 +182,7 @@ const Home = () => {
                       className="fullSizedField"
                       disabled={rsvpData[0].responded || rsvpData[index].is_attending !== true}
                       value={rsvpData[index].allergy || ''}
-                      onChange={(value) => handleChange(index, 'allergy', value.target.value)}
+                      onChange={(value) => handleChange(index, 'allergy', value.target.value || '')}
                     />
                   </Grid>
                   {rsvpData.length > 1 && rsvpData.length !== index+1 && (
@@ -185,7 +195,6 @@ const Home = () => {
               <Grid item xs={12} className="textField">
                 <Button
                   variant="contained"
-
                   onClick={resetPage}
                   className="actionReturnButton"
                 >
@@ -195,6 +204,7 @@ const Home = () => {
                     <Button
                         variant="contained"
                         color="secondary"
+                        disabled={clickRSVPForm}
                         onClick={() => submitRSVP()}
                         className="actionButton"
                       >
