@@ -57,6 +57,8 @@ const Home = () => {
         isError = true;
       else if(element.is_attending === true && element.meal_id === null)
         isError = true;
+      else if(element.covid_status !== 'Will Be Vaccinated' && element.covid_status !== 'Will Be Tested')
+        isError = true;
     })
 
     if(isError) {
@@ -79,6 +81,7 @@ const Home = () => {
           allergies: person.allergy,
           mealID: person.meal_id,
           isAttending: person.is_attending,
+          covidStatus: person.covid_status,
           rsvpPersonID: person.id
         })),
         "rsvpID": rsvpData[0].rsvp_id
@@ -87,6 +90,12 @@ const Home = () => {
         setIsValidCode(false);
         setRSVPData([]);
         setRSVPCode("");
+      })
+      .catch((e) => {
+        alert("Please complete required fields")
+      })
+      .finally(() => {
+        setClickRSVPForm(false);
       })
   }
 
@@ -158,6 +167,22 @@ const Home = () => {
                     </Select>
                   </Grid>
                   <Grid item xs={6} className="textField">
+                    <Select 
+                      required 
+                      className="fullSizedField"
+                      disabled={
+                        rsvpData[0].responded || 
+                        !rsvpData[index].is_attending
+                      }
+                      value={rsvpData[index].covid_status || '-1'} 
+                      onChange={(value) => handleChange(index, 'covid_status', value.target.value)}
+                      >
+                      <MenuItem value='-1' disabled>Vaccinated or Covid Test</MenuItem>
+                      <MenuItem value='Will Be Vaccinated'>Vaccinated</MenuItem>
+                      <MenuItem value='Will Be Tested'>Will Test Within 3 Days</MenuItem>
+                    </Select>
+                  </Grid>
+                  <Grid item xs={12} className="textField">
                     <Select 
                       required 
                       className="fullSizedField"
