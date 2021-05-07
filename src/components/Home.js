@@ -57,7 +57,7 @@ const Home = () => {
         isError = true;
       else if(element.is_attending === true && element.meal_id === null)
         isError = true;
-      else if(element.covid_status !== 'Will Be Vaccinated' && element.covid_status !== 'Will Be Tested')
+      else if(element.is_attending && (element.covid_status !== 'Will Be Vaccinated' && element.covid_status !== 'Will Be Tested'))
         isError = true;
     })
 
