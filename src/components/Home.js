@@ -38,6 +38,7 @@ const Home = () => {
     axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/rsvp?rsvpCode=${rsvpCode}`, config)
       .then(async (res) => {
         if(res.data.rsvpData.length > 0) {
+          console.log(res.data.rsvpData);
           setIsNoRSVPFound(false);
           await setMeals(res.data.meals);
           await setRSVPData(res.data.rsvpData);
