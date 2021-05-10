@@ -20,8 +20,6 @@ const Admin = () => {
                     if(res.data.attendancesData.length > 0) {
                         await setAttendanceData(res.data.attendancesData);
                     }
-                    // console.log(attendancesData.length)
-                    // console.log(res.data.attendancesData[0].name)
                 })
         }
 
@@ -29,7 +27,6 @@ const Admin = () => {
     }, []);
     
     return(
-        <>
         <div className="adminContainer">
             <Grid container>
                 <Grid item lg={12}>
@@ -50,14 +47,12 @@ const Admin = () => {
                             </TableHead>
                             <TableBody>
                             {attendancesData.map((element, index) => (
-                             <>
                                 <TableRow>
                                         <TableCell>{attendancesData[index].name}</TableCell>
                                         <TableCell>{attendancesData[index].covid_status}</TableCell>
                                         <TableCell>{attendancesData[index].mealname}</TableCell>
                                         <TableCell className="tableCell">{attendancesData[index].allergy}</TableCell>
                                 </TableRow>
-                            </>
                             ))}
                             </TableBody>                     
                         </Table>
@@ -65,7 +60,7 @@ const Admin = () => {
                 </Grid>
             </Grid>
         </div>
-        </>
+
     );
 }
 
