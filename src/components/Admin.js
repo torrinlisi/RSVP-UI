@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Grid, TableContainer, Table, TableRow, TableHead, TableCell, TableBody } from '@material-ui/core';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
-import { width } from '@material-ui/system';
+
 
 const Admin = () => {
     const [attendancesData, setAttendanceData] = useState([]);
 
-    const getAttendanceData = () => {
-        setAttendanceData([]);
-        let config = {
-            headers: {
-                'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
+    useEffect(() => {
+        const getAttendanceData = () => {
+            setAttendanceData([]);
+            let config = {
+                headers: {
+                    'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
+                }
             }
+    
+            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin`, config)
+                .then(async (res) => {
+                    if(res.data.attendancesData.length > 0) {
+                        await setAttendanceData(res.data.attendancesData);
+                    }
+                    // console.log(attendancesData.length)
+                    // console.log(res.data.attendancesData[0].name)
+                })
         }
 
-        axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin`, config)
-            .then(async (res) => {
-                if(res.data.attendancesData.length > 0) {
-                    await setAttendanceData(res.data.attendancesData);
-                }
-                console.log(attendancesData.length)
-                console.log(res.data.attendancesData[0].name)
-            })
-    }
+        getAttendanceData();
+    }, []);
     
     return(
         <>
@@ -31,11 +34,6 @@ const Admin = () => {
             <Grid container>
                 <Grid item lg={12}>
                     <Typography variant="h5" className="adminTitle">Attendance Information</Typography>
-                    <Button
-                        onClick={() => getAttendanceData()}
-                    >
-                        Get Attendance Information
-                    </Button>
                 </Grid>
             </Grid>
             <Grid container>
