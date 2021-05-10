@@ -56,7 +56,7 @@ const Admin = () => {
                                 <TableRow>
                                         <TableCell>{attendancesData[index].name}</TableCell>
                                         <TableCell>{attendancesData[index].covid_status}</TableCell>
-                                        <TableCell>{attendancesData[index].meal_id}</TableCell>
+                                        <TableCell>{attendancesData[index].mealname}</TableCell>
                                         <TableCell className="tableCell">{attendancesData[index].allergy}</TableCell>
                                 </TableRow>
                             </>
