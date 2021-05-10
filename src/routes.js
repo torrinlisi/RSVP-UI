@@ -4,6 +4,7 @@ import About from './components/About';
 import Timeline from './components/Timeline';
 import FAQ from './components/FAQ';
 import COVID from './components/Covid19';
+import Admin from './components/Admin';
 import { Route, Switch } from 'react-router-dom';
 
 export const Routes = () => {
@@ -32,6 +33,11 @@ export const Routes = () => {
             <Switch>
                 <Route path="/covid19">
                     <COVID />
+                </Route>
+            </Switch>
+            <Switch>
+                <Route path="/admin">
+                    <Admin />
                 </Route>
             </Switch>
         </>

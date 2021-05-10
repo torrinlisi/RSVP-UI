@@ -177,3 +177,32 @@ acordion{
     padding-left: 0%;
   }
 }
+
+@media (max-width: 450px)  {
+  .adminTitle{
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 300px)  {
+  .adminTitle{
+    font-size: 1rem !important;
+  }
+}
+
+.adminContainer{
+  width: 100%;
+  height: 100%;
+  margin-top: 10vh;
+  padding: 0% 5%;
+}
+
+.adminBody{
+  padding-top: 4%;
+  width: 100%;
+  height: 100%;
+}
+
+.tableCell{
+  width: 40%;
+}
