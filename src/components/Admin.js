@@ -11,11 +11,11 @@ const Admin = () => {
             setAttendanceData([]);
             let config = {
                 headers: {
-                    'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
+                    'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
                 }
             }
     
-            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin`, config)
+            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin`, config)
                 .then(async (res) => {
                     if(res.data.attendancesData.length > 0) {
                         await setAttendanceData(res.data.attendancesData);
