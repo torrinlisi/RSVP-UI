@@ -4,6 +4,22 @@ import Card from '@material-ui/core/Card';
 import axios from 'axios';
 import { Tabs, Tab, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import MaterialTable from 'material-table';
+import { forwardRef } from 'react';
+import {FilterList, Search, Clear, SaveAlt, ArrowDownward, FirstPage, LastPage, ChevronRight, ChevronLeft} from '@material-ui/icons';
+
+const tableIcons = {
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+}
 
 function TabPanel(props){
     const { children, value, index, ...other } = props;
@@ -127,10 +143,10 @@ const Admin = () => {
                     <Tabs value={value} onChange={handleChange}>
                         <Tab label="Attendence Information" value="attendence" wrapped {...a11yProps('attendence')} />
                         <Tab label="Rejection Information" value="rejection" wrapped {...a11yProps('rejection')} />
-                        <Tab label="Await List" value="await" wrapped {...a11yProps('await')} />
+                        <Tab label="Awaiting List" value="await" wrapped {...a11yProps('await')} />
                     </Tabs>
                     <TabPanel value={value} index="attendence">
-                        <TableContainer>
+                        {/* <TableContainer>
                             <Table aria-label="customized table">
                                 <TableHead>
                                     <TableRow>
@@ -151,40 +167,56 @@ const Admin = () => {
                                 ))}
                                 </TableBody>                     
                             </Table>
-                        </TableContainer>     
+                        </TableContainer>      */}
+                        <MaterialTable 
+                            icons = {tableIcons}
+                            title = "Attendance List"
+                            columns = {[
+                                {title: 'Name', field: 'name'},
+                                {title: 'Covid Status', field: 'covid_status'},
+                                {title: 'Meal Option', field: 'mealname'},
+                                {title: 'Allergy', field: 'allergy'}
+                            ]}
+                            data = {attendancesData}
+                            options = {{
+                                exportButton: true,
+                                exportAllData: true,
+                                pageSize: 10,
+                            }}
+
+                        />
                     </TabPanel>
                     <TabPanel value={value} index="rejection">
-                        <TableContainer>
-                            <Table aria-label="customized table">
-                                <TableHead>
-                                    <TableCell>Name</TableCell>
-                                </TableHead>
-                                <TableBody>
-                                    {notAttendancesData.map((element, index) => (
-                                        <TableRow>
-                                            <TableCell>{notAttendancesData[index].name}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                        <MaterialTable 
+                            icons = {tableIcons}
+                            title = "Rejection List"
+                            columns = {[
+                                {title: 'Name', field: 'name'},
+                            ]}
+                            data = {notAttendancesData}
+                            options = {{
+                                exportButton: true,
+                                exportAllData: true,
+                                pageSize: 10,
+                            }}
+                        />
+
                     </TabPanel>
 
                     <TabPanel value={value} index="await">
-                        <TableContainer>
-                            <Table aria-label="customized table">
-                                <TableHead>
-                                    <TableCell>Name</TableCell>
-                                </TableHead>
-                                <TableBody>
-                                    {awaitingData.map((element, index) => (
-                                        <TableRow>
-                                            <TableCell>{awaitingData[index].name}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                        <MaterialTable
+                            icons = {tableIcons}
+                            title = "Awaiting List"
+                            columns={[
+                                {title: 'Name', field: 'name'},
+                            ]}
+                            data={awaitingData}
+                            options={{
+                                exportButton: true,
+                                exportAllData: true,
+                                pageSize: 10,
+                            }}
+                         />
                     </TabPanel>
                 </Grid>
             </Grid>
