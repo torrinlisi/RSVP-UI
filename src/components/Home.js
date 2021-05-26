@@ -31,7 +31,7 @@ const Home = () => {
     setClickRSVP(true);
     let config = {
       headers: {
-        'x-api-key': '1HBb6jeAJX7n8X5bVsAjGaHwbSG8r4Jg3Afz8WVG'
+        'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
       }
     }
 
@@ -71,7 +71,7 @@ const Home = () => {
 
     let config = {
       headers: {
-        'x-api-key': '1HBb6jeAJX7n8X5bVsAjGaHwbSG8r4Jg3Afz8WVG'
+        'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
       }
     }
 

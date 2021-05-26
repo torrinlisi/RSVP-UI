@@ -52,11 +52,11 @@ const Admin = () => {
             setAttendancesData([]);
             let config = {
                 headers: {
-                    'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
+                    'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
                 }
             }
     
-            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=true`, config)
+            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=true`, config)
                 .then(async (res) => {
                     if(res.data.guestsData.length > 0) {
                         await setAttendancesData(res.data.guestsData);
