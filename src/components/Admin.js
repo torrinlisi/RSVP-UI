@@ -8,57 +8,25 @@ import MaterialTable from 'material-table';
 import { forwardRef } from 'react';
 import {FilterList, Search, Clear, SaveAlt, ArrowDownward, FirstPage, LastPage, ChevronRight, ChevronLeft} from '@material-ui/icons';
 
-const tableIcons = {
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-}
-
-function TabPanel(props){
-    const { children, value, index, ...other } = props;
-    return (
-        <div
-          role="tabpanel"
-          hidden={value !== index}
-          id={`wrapped-tabpanel-${index}`}
-          aria-labelledby={`wrapped-tab-${index}`}
-          {...other}
-        >
-          {value === index && (
-            <Box p={3}>
-              <Typography>{children}</Typography>
-            </Box>
-          )}
-        </div>
-      );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-      id: `wrapped-tab-${index}`,
-      'aria-controls': `wrapped-tabpanel-${index}`,
-    };
-  }
-
 const Admin = () => {
     const [attendancesData, setAttendancesData] = useState([]);
     const [notAttendancesData, setNotAttendancesData] = useState([]);
     const [awaitingData, setAwaitingData] = useState([]);
     const [value, setValue] = useState('attendence');
 
+    const tableIcons = {
+        Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+        Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+        ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+        Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+        Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+        SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+        FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+        LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+        NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+        PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    }
+    
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -104,7 +72,38 @@ const Admin = () => {
         getAttendanceData();
 
     }, []);
+    function TabPanel(props){
+        const { children, value, index, ...other } = props;
+        return (
+            <div
+              role="tabpanel"
+              hidden={value !== index}
+              id={`wrapped-tabpanel-${index}`}
+              aria-labelledby={`wrapped-tab-${index}`}
+              {...other}
+            >
+              {value === index && (
+                <Box p={3}>
+                  <Typography>{children}</Typography>
+                </Box>
+              )}
+            </div>
+          );
+    }
     
+    TabPanel.propTypes = {
+        children: PropTypes.node,
+        index: PropTypes.any.isRequired,
+        value: PropTypes.any.isRequired,
+    };
+    
+    function a11yProps(index) {
+        return {
+          id: `wrapped-tab-${index}`,
+          'aria-controls': `wrapped-tabpanel-${index}`,
+        };
+      }
+
     return(
         <div className="adminContainer">
             <Grid container>
@@ -146,28 +145,6 @@ const Admin = () => {
                         <Tab label="Awaiting List" value="await" wrapped {...a11yProps('await')} />
                     </Tabs>
                     <TabPanel value={value} index="attendence">
-                        {/* <TableContainer>
-                            <Table aria-label="customized table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Name</TableCell>
-                                        <TableCell>Covid Status</TableCell>
-                                        <TableCell>Meal Option</TableCell>
-                                        <TableCell>Allergy</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                {attendancesData.map((element, index) => (
-                                    <TableRow>
-                                            <TableCell>{attendancesData[index].name}</TableCell>
-                                            <TableCell>{attendancesData[index].covid_status}</TableCell>
-                                            <TableCell>{attendancesData[index].mealname}</TableCell>
-                                            <TableCell className="tableCell">{attendancesData[index].allergy}</TableCell>
-                                    </TableRow>
-                                ))}
-                                </TableBody>                     
-                            </Table>
-                        </TableContainer>      */}
                         <MaterialTable 
                             icons = {tableIcons}
                             title = "Attendance List"
