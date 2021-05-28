@@ -97,7 +97,7 @@ const Admin = () => {
         value: PropTypes.any.isRequired,
     };
     
-    function a11yProps(index) {
+    const a11yProps = (index) => {
         return {
           id: `wrapped-tab-${index}`,
           'aria-controls': `wrapped-tabpanel-${index}`,
