@@ -36,33 +36,33 @@ const Admin = () => {
             setAttendanceData([]);
             let config = {
                 headers: {
-                    // 'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
+                    'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
                     //Yan's API Key
-                    'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
+                    // 'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
                 }
             }
     
-            // axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=true`, config)
+            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=true`, config)
             //Yan's Endpoint
-            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=true`, config)
+            // axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=true`, config)
                 .then(async (res) => {
                     if(res.data.guestData.length > 0) {
                         await setAttendanceData(res.data.guestData);
                     }
                 })
             
-            // axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=false`, config)    
+            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=false`, config)    
             //Yan's Endpoint
-            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=false`, config)
+            // axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=false`, config)
             .then(async (res) => {
                 if(res.data.guestData.length > 0) {
                     await setNotAttendanceData(res.data.guestData);
                 }
             })
             
-            // axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=awaiting`, config)    
+            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=awaiting`, config)    
             //Yan's Endpoint
-            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=awaiting`, config)
+            // axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=awaiting`, config)
             .then(async (res) => {
                 if(res.data.guestData.length > 0) {
                     await setAwaitingData(res.data.guestData);
