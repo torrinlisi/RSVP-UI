@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Grid, TableContainer, Table, TableRow, TableHead, TableCell, TableBody, CardContent } from '@material-ui/core';
+import { Typography, Grid, CardContent } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import axios from 'axios';
 import { Tabs, Tab, Box } from '@material-ui/core';
@@ -9,8 +9,8 @@ import { forwardRef } from 'react';
 import {FilterList, Search, Clear, SaveAlt, ArrowDownward, FirstPage, LastPage, ChevronRight, ChevronLeft} from '@material-ui/icons';
 
 const Admin = () => {
-    const [attendancesData, setAttendancesData] = useState([]);
-    const [notAttendancesData, setNotAttendancesData] = useState([]);
+    const [attendanceData, setAttendanceData] = useState([]);
+    const [notAttendanceData, setNotAttendanceData] = useState([]);
     const [awaitingData, setAwaitingData] = useState([]);
     const [value, setValue] = useState('attendence');
 
@@ -33,39 +33,39 @@ const Admin = () => {
 
     useEffect(() => {
         const getAttendanceData = () => {
-            setAttendancesData([]);
+            setAttendanceData([]);
             let config = {
                 headers: {
-                    'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
+                    // 'x-api-key': 'FWebb2j6YN7vpHdNKIwkg4Pbt7sTRzEB6jfm9wsx'
                     //Yan's API Key
-                    // 'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
+                    'x-api-key': '969jrQYjlh8D9psm47ix22kCMZx7C1QC3xBaXndh'
                 }
             }
     
-            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=true`, config)
+            // axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=true`, config)
             //Yan's Endpoint
-            // axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=true`, config)
+            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=true`, config)
                 .then(async (res) => {
-                    if(res.data.guestsData.length > 0) {
-                        await setAttendancesData(res.data.guestsData);
+                    if(res.data.guestData.length > 0) {
+                        await setAttendanceData(res.data.guestData);
                     }
                 })
             
-            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=false`, config)    
+            // axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=false`, config)    
             //Yan's Endpoint
-            // axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=false`, config)
+            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=false`, config)
             .then(async (res) => {
-                if(res.data.guestsData.length > 0) {
-                    await setNotAttendancesData(res.data.guestsData);
+                if(res.data.guestData.length > 0) {
+                    await setNotAttendanceData(res.data.guestData);
                 }
             })
             
-            axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=awaiting`, config)    
+            // axios.get(`https://9ddaq8z128.execute-api.us-east-1.amazonaws.com/dev/admin?adminCondition=awaiting`, config)    
             //Yan's Endpoint
-            // axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=awaiting`, config)
+            axios.get(`https://9jnxvfagb0.execute-api.us-east-1.amazonaws.com/yan/admin?adminCondition=awaiting`, config)
             .then(async (res) => {
-                if(res.data.guestsData.length > 0) {
-                    await setAwaitingData(res.data.guestsData);
+                if(res.data.guestData.length > 0) {
+                    await setAwaitingData(res.data.guestData);
                 }
             })
         }
@@ -116,7 +116,7 @@ const Admin = () => {
                     <Card>
                         <CardContent>
                             <Typography color="textPrimary" gutterBottom>Total Attendance Count</Typography>
-                            <Typography variant="h5" component="h2">{attendancesData.length}</Typography>
+                            <Typography variant="h5" component="h2">{attendanceData.length}</Typography>
                         </CardContent>
                     </Card>
                 </Grid>
@@ -124,7 +124,7 @@ const Admin = () => {
                     <Card>
                         <CardContent>
                             <Typography color="textPrimary" gutterBottom>Rejection Count</Typography>
-                            <Typography variant="h5" component="h2">{notAttendancesData.length}</Typography>
+                            <Typography variant="h5" component="h2">{notAttendanceData.length}</Typography>
                         </CardContent>
                     </Card>
                 </Grid>
@@ -154,7 +154,7 @@ const Admin = () => {
                                 {title: 'Meal Option', field: 'mealname'},
                                 {title: 'Allergy', field: 'allergy'}
                             ]}
-                            data = {attendancesData}
+                            data = {attendanceData}
                             options = {{
                                 exportButton: true,
                                 exportAllData: true,
@@ -170,7 +170,7 @@ const Admin = () => {
                             columns = {[
                                 {title: 'Name', field: 'name'},
                             ]}
-                            data = {notAttendancesData}
+                            data = {notAttendanceData}
                             options = {{
                                 exportButton: true,
                                 exportAllData: true,
